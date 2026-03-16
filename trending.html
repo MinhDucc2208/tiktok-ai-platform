@@ -1,0 +1,27 @@
+<h2>Trending Video Finder</h2>
+
+<p>Paste a TikTok link to see if it has viral potential</p>
+
+<input id="url">
+
+<button onclick="trend()">Check</button>
+
+<div id="score"></div>
+
+<script>
+
+async function trend(){
+
+let r=await fetch("/api/analyze?url="+encodeURIComponent(url.value))
+
+let v=await r.json()
+
+let engagement=(v.digg_count+v.comment_count+v.share_count)/v.play_count
+
+let viral=Math.round(engagement*500)
+
+score.innerText="Viral Score: "+viral
+
+}
+
+</script>

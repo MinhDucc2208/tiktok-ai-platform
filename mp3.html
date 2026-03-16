@@ -1,0 +1,22 @@
+<h2>MP3 Extractor</h2>
+
+<input id="url">
+
+<button onclick="getmp3()">Extract</button>
+
+<a id="mp3"></a>
+
+<script>
+
+async function getmp3(){
+
+let r=await fetch("/api/analyze?url="+encodeURIComponent(url.value))
+
+let v=await r.json()
+
+mp3.href=v.music
+mp3.innerText="Download MP3"
+
+}
+
+</script>

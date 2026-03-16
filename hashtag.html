@@ -1,0 +1,23 @@
+<h2>Hashtag Analyzer</h2>
+
+<input id="url">
+
+<button onclick="run()">Analyze</button>
+
+<div id="tags"></div>
+
+<script>
+
+async function run(){
+
+let r=await fetch("/api/analyze?url="+encodeURIComponent(url.value))
+
+let v=await r.json()
+
+let tags=v.title.match(/#\w+/g)
+
+tags.innerText=tags
+
+}
+
+</script>

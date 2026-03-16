@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h2>Video Analyzer</h2>
+
+<input id="url">
+
+<button onclick="analyze()">Analyze</button>
+
+<div id="views"></div>
+<div id="likes"></div>
+
+<canvas id="chart"></canvas>
+
+<script>
+
+async function analyze(){
+
+let r=await fetch("/api/analyze?url="+encodeURIComponent(url.value))
+
+let v=await r.json()
+
+views.innerText="Views: "+v.play_count
+likes.innerText="Likes: "+v.digg_count
+
+new Chart(chart,{
+
+type:"bar",
+
+data:{
+labels:["Views","Likes","Comments","Shares"],
+datasets:[{
+
+data:[v.play_count,v.digg_count,v.comment_count,v.share_count]
+
+}]
+
+}
+
+})
+
+}
+
+</script>

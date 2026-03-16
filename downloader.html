@@ -1,0 +1,22 @@
+<h2>Video Downloader</h2>
+
+<input id="url">
+
+<button onclick="download()">Get Video</button>
+
+<a id="video"></a>
+
+<script>
+
+async function download(){
+
+let r=await fetch("/api/analyze?url="+encodeURIComponent(url.value))
+
+let v=await r.json()
+
+video.href=v.play
+video.innerText="Download Video"
+
+}
+
+</script>

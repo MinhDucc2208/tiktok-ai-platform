@@ -1,0 +1,31 @@
+<h2>Login</h2>
+
+<input id="user">
+<input id="pass" type="password">
+
+<button onclick="login()">Login</button>
+
+<script>
+
+async function login(){
+
+let r=await fetch("/api/login",{
+
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+
+user:user.value,
+pass:pass.value
+
+})
+
+})
+
+let j=await r.json()
+
+if(j.ok) location="dashboard.html"
+
+}
+
+</script>
